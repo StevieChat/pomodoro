@@ -1,0 +1,48 @@
+body, html{
+    color: white;
+    background-color: #565656;
+}
+
+.container{
+    display: flex;
+}
+
+.header{
+    height: 100px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mainDiv{
+    background-color: #D7CEC7;
+    height: 600px;
+    color: #76323F;
+    justify-content: center;
+    align-items: center;
+}
+
+#time{
+    height: 150px;
+    max-width: 75%;
+    margin: auto;
+    font-size: 800%;
+}
+
+#startBtn{
+    height: 50px;
+    color: white;
+    background-color: #565656;
+    font-size: 125%;
+    border: none;
+    border-right: 1px solid white;
+}       
+
+#startBtn:hover{
+    font-weight: bold; 
+}
+
+#startBtn:active{
+    background-color: #76323F;
+}
