@@ -1,3 +1,5 @@
+var statusFlag = "work"
+
 var startBtn = document.querySelector("#startBtn");
 startBtn.addEventListener('click', start, false);
 
@@ -28,7 +30,7 @@ function startTimer(duration, display) {
 }
 
 function start () {
-    var initialTime = 60*25,
+    var initialTime = 30,
         display = document.querySelector('#time');
     startTimer(initialTime, display);
 };

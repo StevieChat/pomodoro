@@ -30,19 +30,24 @@ body, html{
     font-size: 800%;
 }
 
-#startBtn{
+.btn{
     height: 50px;
     color: white;
     background-color: #565656;
     font-size: 125%;
-    border: none;
-    border-right: 1px solid white;
-}       
+    border: none; 
+    width: 50%;
+}     
 
-#startBtn:hover{
+.btn:hover{
     font-weight: bold; 
 }
 
-#startBtn:active{
+.btn:active{
     background-color: #76323F;
 }
+
+#startBtn{
+    border-right: 1px solid white;
+}
+
