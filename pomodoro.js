@@ -21,11 +21,11 @@ stopBtn.addEventListener('click', stopTimer, false);
 function startTimer(){
 
     if(timerStopped){
-      
-       displayCurrentStatus(currentStatus);
 
        timerStopped = false;
        countdown = setInterval(function(){
+
+            displayCurrentStatus(currentStatus);
 
             mins = parseInt(timer/60);
             seconds = parseInt(timer%60);
@@ -40,6 +40,7 @@ function startTimer(){
                 counter++;
                 if(counter % 2 == 0){
                     timer = workDuration;
+                    currentStatus = "work";
                 }
                 else{
                     timer = (counter + 1) % 8 == 0 ? longBreakDuration : breakDuration;
