@@ -10,6 +10,8 @@ function startTimer(duration, display) {
         seconds;
     
     function timer() {
+        console.log(Date.now());
+        console.log(start);
         diff = duration - (((Date.now() - start) / 1000) | 0);
         
         minutes = (diff / 60) | 0;
@@ -22,7 +24,16 @@ function startTimer(duration, display) {
 
         if(diff <= 0) {
             start = Date.now() + 1000;
+
+            if(statusFlag == "work"){
+                statusFlag = "rest";
+                startTimer(5, display);
+            }else{
+                statusFlag = "work";
+                startTimer(10, display);
+            }
         }
+
     };
 
     timer();
@@ -30,7 +41,7 @@ function startTimer(duration, display) {
 }
 
 function start () {
-    var initialTime = 30,
+    var initialTime = 10,
         display = document.querySelector('#time');
     startTimer(initialTime, display);
 };
