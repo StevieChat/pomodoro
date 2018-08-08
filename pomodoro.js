@@ -1,47 +1,75 @@
-var statusFlag = "work"
+const workDuration = 10;
+const breakDuration = 5;
+const longBreakDuration = 7;
 
-var startBtn = document.querySelector("#startBtn");
-startBtn.addEventListener('click', start, false);
+var counter = 0;
+var timer = workDuration;
+var mins, seconds;
+var countdown;
+var timerStopped = true;
+var currentStatus = "work";
 
-function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-    
-    function timer() {
-        console.log(Date.now());
-        console.log(start);
-        diff = duration - (((Date.now() - start) / 1000) | 0);
-        
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
+const display = document.querySelector('#time');
+const status = document.querySelector('#status');
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+const startBtn = document.querySelector("#startBtn");
+startBtn.addEventListener('click', startTimer, false);
 
-        display.textContent = minutes + ":" + seconds;
+const stopBtn = document.querySelector("#stopBtn");
+stopBtn.addEventListener('click', stopTimer, false);
 
-        if(diff <= 0) {
-            start = Date.now() + 1000;
+function startTimer(){
 
-            if(statusFlag == "work"){
-                statusFlag = "rest";
-                startTimer(5, display);
-            }else{
-                statusFlag = "work";
-                startTimer(10, display);
+    if(timerStopped){
+      
+       displayCurrentStatus(currentStatus);
+
+       timerStopped = false;
+       countdown = setInterval(function(){
+
+            mins = parseInt(timer/60);
+            seconds = parseInt(timer%60);
+            
+            mins = mins < 10 ? "0" + mins : mins;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = mins + ":" + seconds;
+            timer--;
+
+            if(timer < 0){
+                counter++;
+                if(counter % 2 == 0){
+                    timer = workDuration;
+                }
+                else{
+                    timer = (counter + 1) % 8 == 0 ? longBreakDuration : breakDuration;
+                    currentStatus = "break";
+                }
             }
-        }
 
-    };
+       }, 1000); 
 
-    timer();
-    setInterval(timer, 1000);
+    }
+    return;
 }
 
-function start () {
-    var initialTime = 10,
-        display = document.querySelector('#time');
-    startTimer(initialTime, display);
-};
+function stopTimer(){
+    timerStopped = true;
+    clearInterval(countdown);
+    counter = 0;
+    timer = workDuration;
+    timerStopped = true;
+    display.textContent = "00:00";
+}
+
+function displayCurrentStatus(currentStatus){
+    switch(currentStatus){
+        case 'work':
+            status.textContent = "Current Status: Work";
+            break;
+        
+        case 'break':
+            status.textContent = "Current Status: Break";
+            break;
+    }
+}

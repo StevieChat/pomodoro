@@ -17,17 +17,24 @@ body, html{
 
 .mainDiv{
     background-color: #D7CEC7;
+    flex-direction: column;
     height: 600px;
     color: #76323F;
     justify-content: center;
     align-items: center;
 }
 
+.infoPanel{
+    margin: auto;
+}
+
 #time{
     height: 150px;
-    max-width: 75%;
-    margin: auto;
     font-size: 800%;
+}
+
+#status{
+    font-size: 300%;
 }
 
 .btn{
@@ -48,6 +55,10 @@ body, html{
 }
 
 #startBtn{
+    border-right: 1px solid white;
+}
+
+#pauseBtn{
     border-right: 1px solid white;
 }
 
