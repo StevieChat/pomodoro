@@ -1,6 +1,6 @@
-const workDuration = 10;
-const breakDuration = 5;
-const longBreakDuration = 7;
+const workDuration = 1500;
+const breakDuration = 300;
+const longBreakDuration = 600;
 
 var counter = 0;
 var timer = workDuration;
